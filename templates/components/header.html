@@ -1,25 +1,17 @@
-<header>
-    <div class="header-wrapper rounded my-4">
-        <div class="collapse navbar-collapse">
+<div class="collapse navbar-collapse">
 
-            <ul class="navbar-nav mr-auto">
-                {% if user.is_authenticated %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ user.get_absolute_url }}">Личный кабинет</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:logout' %}">выйти</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:login' %}">войти</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:register' %}">зарегистрироваться</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</header>
+    <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:logout' %}">выйти</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:login' %}">войти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:register' %}">зарегистрироваться</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
