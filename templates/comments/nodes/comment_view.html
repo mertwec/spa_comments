@@ -5,17 +5,17 @@
         {% recursetree page.object_list %}
         <li>
             <div class="back_white border_line m-2" id="{{ node.id }}">
-                <p class='mx-2'>By
-                    <span class="fw-bold">{{ node.username }}</span>
+                <p class='d-flex justify-content-between mx-2'>
+                    <span>By <span class="fw-bold"> {{ node.username }}</span></span>
                     <span class="fw-light fst-italic text-end">{{ node.created_on }}</span>
                 </p>
                 <hr>
-                <div>
+                <div class="mx-3">
                     {{ node.text }}
                 </div>
                 <hr>
                 <button class="btn btn-primary m-2" onclick="createReplyForm({{ node.id }})">
-                    Reply <span class="fw-bold">{{ node.username }}</span>:
+                    Reply <span class="fw-bold">{{ node.username }}</span>
                 </button>
             </div>
 

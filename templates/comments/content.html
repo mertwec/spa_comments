@@ -16,7 +16,7 @@
 
     <!-- nav paginator  -->
     <div class="text-center">
-        {% if page.has_other_pages%}
+        {% if page.has_other_pages %}
             {% if page.has_previous %}
             <a href="?page={{page.previous_page_number}}"> &lt; </a>
             &nbsp; | &nbsp;
@@ -31,7 +31,23 @@
         {% endif %}
     </div>
 
-    {% include 'comments/nodes/form_new_comment.html' %}
+    {#% include 'comments/nodes/form_new_comment.html' %#}
+
+    <div class="col">
+        <h3 class="ms-3"> New comment </h3>
+        <form id="myForm" method="post" class="form-insert">
+            {% csrf_token %}
+            <table class="m-2">
+                {{ comment_form.as_table}}
+                <tr>
+                    <td></td>
+                    <td class="text-end m-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
 </div>
 
