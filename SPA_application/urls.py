@@ -15,10 +15,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from comments.views import block_comments
+from django.urls import path, include
+from comments import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', block_comments),
-]
+    path('', views.main_redirect_sort),
+    path('<str:sorter>/', views.block_comments, name='sorted_page'),
+    path('captcha/', include('captcha.urls')),
+    ]

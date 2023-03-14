@@ -2,18 +2,19 @@
 
 <div class="row mx-3">
     <ul>
-        {% recursetree page.object_list %}
-        <li>
+        {% recursetree tree_comment %}
+        <li class="list-group-item">
             <div class="back_white border_line m-2" id="{{ node.id }}">
-                <p class='d-flex justify-content-between mx-2'>
+                <p class='d-flex justify-content-between mx-2 my-0'>
                     <span>By <span class="fw-bold"> {{ node.username }}</span></span>
                     <span class="fw-light fst-italic text-end">{{ node.created_on }}</span>
                 </p>
-                <hr>
+                <p class="my-0 mx-2">{{ node.email }}</p>
+                <hr class="my-1">
                 <div class="mx-3">
                     {{ node.text }}
                 </div>
-                <hr>
+                <hr class="my-1">
                 <button class="btn btn-primary m-2" onclick="createReplyForm({{ node.id }})">
                     Reply <span class="fw-bold">{{ node.username }}</span>
                 </button>

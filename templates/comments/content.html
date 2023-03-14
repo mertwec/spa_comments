@@ -8,46 +8,43 @@
 
 {% block content %}
 <div class="contaier-fluid">
-    <div class="row mx-2">
+    <div class="row">
         <h2 class="text-center m-3">{{title}}</h2>
     </div>
 
+    <p class="text-center">Sort by:
+        <a href="{% url 'sorted_page' sorter='username' %}">name</a> /
+        <a href="{% url 'sorted_page' sorter='email' %}">email</a> /
+        <a href="{% url 'sorted_page' sorter='created_on' %}">oldest</a> /
+        <a href="{% url 'sorted_page' sorter='-created_on' %}">newest</a>
+    </p>
+    <p class="text-end mx-5">
+        Main messages on page: {{count_main}} <br>
+        Messages with comments: {{count_all}}
+    </p>
+
+    {% for tree_comment in comments %}
     {% include 'comments/nodes/comment_view.html'%}
+    {% endfor %}
 
     <!-- nav paginator  -->
     <div class="text-center">
         {% if page.has_other_pages %}
-            {% if page.has_previous %}
-            <a href="?page={{page.previous_page_number}}"> &lt; </a>
-            &nbsp; | &nbsp;
-            {% endif %}
+        {% if page.has_previous %}
+        <a href="?page={{page.previous_page_number}}"> &lt; </a>
+        &nbsp; | &nbsp;
+        {% endif %}
 
-            <span>Part {{ page.number }} from {{ page.paginator.num_pages }}</span> 
+        <span>Part {{ page.number }} from {{ page.paginator.num_pages }}</span>
 
-            {% if page.has_next %}
-            &nbsp; | &nbsp;
-            <a href="?page={{page.next_page_number }}"> &gt; </a>
-            {% endif %}
+        {% if page.has_next %}
+        &nbsp; | &nbsp;
+        <a href="?page={{page.next_page_number }}"> &gt; </a>
+        {% endif %}
         {% endif %}
     </div>
 
-    {#% include 'comments/nodes/form_new_comment.html' %#}
-
-    <div class="col">
-        <h3 class="ms-3"> New comment </h3>
-        <form id="myForm" method="post" class="form-insert">
-            {% csrf_token %}
-            <table class="m-2">
-                {{ comment_form.as_table}}
-                <tr>
-                    <td></td>
-                    <td class="text-end m-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+    {% include 'comments/nodes/form_new_comment.html' %}
 
 </div>
 
@@ -96,6 +93,14 @@
             <th><label for="id_url">Url:</label></th>\
             <td><input type="url" name="url" size="24" class="m-2" maxlength="200" id="id_url"></td>\
             </tr>\
+            <tr class="text-center">\
+                <th><label for="id_captcha_1">Enter captcha:</label></th>\
+                <td>\
+                <img src="{% url "captcha-image" key=ckey %}" alt="captcha" class="captcha">\
+                <input type="hidden" name="captcha_0" value="{{ckey}}" required="" id="id_captcha_0">\
+                <input type="text" name="captcha_1" size="8" required="" id="id_captcha_1" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false">\
+                </td>\
+                </tr>\
             <tr><td></td>\
             <td> \
                 <p class="d-flex justify-content-between m-2">\
@@ -113,3 +118,14 @@
 </script>
 
 {% endblock %}
+
+
+<tr>\
+    <th><label for="id_captcha_1">Enter captcha:</label></th>\
+    <td>\
+        <img src="{% url 'captcha-image' key=ckey %}" alt="captcha" class="captcha">\
+        <input type="hidden" name="captcha_0" value="' + {{ckey}} + ' " required="" id="id_captcha_0">\
+        <input type="text" name="captcha_1" required="" id="id_captcha_1" autocapitalize="none" autocomplete="off"
+            autocorrect="off" spellcheck="false">\
+    </td>\
+</tr>\
