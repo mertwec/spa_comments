@@ -89,8 +89,12 @@ WSGI_APPLICATION = 'SPA_application.wsgi.application'
 DB_USER = os.getenv("DB_USER", 'postgres')
 DB_PASSWORD = os.getenv("DB_PASSWORD", '')
 DB_NAME = os.getenv("DB_NAME", 'SPA_database')
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", 5432)
 
-DATABASE_URL = f'postgres://{DB_USER}:{DB_PASSWORD}@localhost/{DB_NAME}'
+DATABASE_URL = f'postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+
+print(DATABASE_URL)
 
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)

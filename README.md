@@ -9,7 +9,7 @@
 ---
 ## Dependencies:
 * Linux
-* Postgresql-14
+* Postgresql-15
 * Python (v 3.10)
 
 ---
