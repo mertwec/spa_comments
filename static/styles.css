@@ -5,16 +5,16 @@
 
 
 body {
-    font-family: "Montserrat", sans-serif;
-    padding: 40px 40px 40px 40px;
-    /* top, right, botom, left */
-    background-color: rgb(148, 202, 238);
-    background-repeat: space;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: 100%;
+  font-family: "Montserrat", sans-serif;
+  padding: 40px 40px 40px 40px;
+  /* top, right, botom, left */
+  background-color: rgb(148, 202, 238);
+  background-repeat: space;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 100%;
 
-  }
+}
 
 .main_wrapper {
   display: flex;
@@ -25,12 +25,12 @@ body {
   margin: 0 auto;
   /*рамка тень */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
 }
 
 .flex-col {
   flex-direction: column;
 }
+
 .flex-row {
   flex-direction: row;
 }

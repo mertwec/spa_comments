@@ -45,18 +45,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'comments.apps.CommentsConfig',
-    'mptt',    
+    'mptt',
     'captcha',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',       # connect whitenoise for static
+    'django.middleware.cache.UpdateCacheMiddleware',    # for server cache
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',   # for server cache
 ]
 
 ROOT_URLCONF = 'SPA_application.urls'
@@ -129,12 +132,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# STORAGES = {
-#     # for django >= 4.2
-#     "staticfiles": {
-#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-#     },
-# }
+STORAGES = {
+    # for django >= 4.2
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # any files for static files
 STATICFILES_DIRS = [
@@ -147,3 +150,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static_connect", "static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CACHES = {
+    'default': {
+        'BACKEND': "django.core.cache.backends.filebased.FileBasedCache",
+        'LOCATION': BASE_DIR / 'cache_files',
+        'TIMEOUT': 300,
+    }
+}

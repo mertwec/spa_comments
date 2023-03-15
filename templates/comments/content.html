@@ -7,10 +7,12 @@
 
 
 {% block content %}
-<div class="contaier-fluid">
-    <div class="row">
-        <h2 class="text-center m-3">{{title}}</h2>
-    </div>
+<div class="contaier-fluid col">
+    <div class="contaier-fluid row-4">
+        <h2 class="text-center m-3">
+            <a href="{% url 'sorted_page' sorter='-created_on' %}">{{title}}</a>
+        </h2>
+    
 
     <p class="text-center">Sort by:
         <a href="{% url 'sorted_page' sorter='username' %}">name</a> /
@@ -19,13 +21,27 @@
         <a href="{% url 'sorted_page' sorter='-created_on' %}">newest</a>
     </p>
     <p class="text-end mx-5">
-        Main messages on page: {{count_main}} <br>
-        Messages with comments: {{count_all}}
+        Max main messages on page: {{count_main}} <br>
+        Now messages with comments: {{count_all}}
     </p>
 
-    {% for tree_comment in comments %}
-    {% include 'comments/nodes/comment_view.html'%}
+    {% if comment_form.errors %}
+    <p class="text-center" style="color:red;">
+        ERROR: message not send.
+    </p>
+    {% for key, value in comment_form.errors.items %}
+    <p class="text-center" style="color:rgb(168, 25, 25);">
+        {{key}} - {{value.0}}
+    </p>
     {% endfor %}
+    {% endif %}
+    </div>
+    <div class="contaier-fluid row-4">
+        {% for tree_comment in comments %}
+        {% include 'comments/nodes/comment_view.html'%}
+    {% endfor %}
+    </div>
+    
 
     <!-- nav paginator  -->
     <div class="text-center">
@@ -100,10 +116,10 @@
                 <input type="hidden" name="captcha_0" value="{{ckey}}" required="" id="id_captcha_0">\
                 <input type="text" name="captcha_1" size="8" required="" id="id_captcha_1" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false">\
                 </td>\
-                </tr>\
+            </tr>\
             <tr><td></td>\
             <td> \
-                <p class="d-flex justify-content-between m-2">\
+            <p class="d-flex justify-content-between m-2">\
                 <button type="submit" class="btn btn-primary">Submit</button>\
                 <button type="button" class="btn btn-outline-secondary" onclick="closeForm()">Close</button>\
             </p> \
@@ -114,18 +130,6 @@
             </form>');
     }
 
-    $("#myForm").trigger("reset")
 </script>
 
 {% endblock %}
-
-
-<tr>\
-    <th><label for="id_captcha_1">Enter captcha:</label></th>\
-    <td>\
-        <img src="{% url 'captcha-image' key=ckey %}" alt="captcha" class="captcha">\
-        <input type="hidden" name="captcha_0" value="' + {{ckey}} + ' " required="" id="id_captcha_0">\
-        <input type="text" name="captcha_1" required="" id="id_captcha_1" autocapitalize="none" autocomplete="off"
-            autocorrect="off" spellcheck="false">\
-    </td>\
-</tr>\

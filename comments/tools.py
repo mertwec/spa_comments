@@ -1,7 +1,7 @@
+import random
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, Page
 from django.http import HttpRequest
 from captcha.models import CaptchaStore
-import random
 
 
 def split_on_pages(request: HttpRequest, queryset, items_on_page=5) -> Page:
@@ -21,10 +21,10 @@ def split_on_pages(request: HttpRequest, queryset, items_on_page=5) -> Page:
 
 def get_captcha_key() -> str:
     """ get random hashkey from table 'CaptchaStore'.
-    if table is empty -- generate 100 keys.
+    if table is empty -- generate 10 keys.
     """
     captcha_keys = CaptchaStore.objects.only("hashkey")
     if not captcha_keys:
-        CaptchaStore.create_pool(100)
+        CaptchaStore.create_pool(10)
         captcha_keys = CaptchaStore.objects.only("hashkey")
     return random.choice(captcha_keys).hashkey

@@ -7,7 +7,7 @@ from captcha.fields import CaptchaField
 class NewCommentForm(forms.ModelForm):
     parent = TreeNodeChoiceField(queryset=Comment.objects.all())
     captcha = CaptchaField(label='Enter captcha',
-                           error_messages={'invalid': 'Uncorrect text'})
+                           error_messages={'invalid': 'Uncorrect text captcha'})
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
