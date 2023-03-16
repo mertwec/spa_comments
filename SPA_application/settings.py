@@ -94,8 +94,6 @@ DB_PORT = os.getenv("DB_PORT", 5432)
 
 DATABASE_URL = f'postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
-print(DATABASE_URL)
-
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 }
