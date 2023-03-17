@@ -18,6 +18,11 @@
                 <button class="btn btn-primary m-2" onclick="createReplyForm({{ node.id }})">
                     Reply <span class="fw-bold">{{ node.username }}</span>
                 </button>
+
+                <a href='{% url "comments:delete_comment" id=node.id %}'>
+                    <button class="btn btn-primary m-2">Delete</button>
+                </a>
+
             </div>
 
             {% if not node.is_leaf_node %}

@@ -1,14 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.cache import never_cache
+from django.urls import reverse
 from comments.models import MockPost, Comment
 from comments.forms import NewCommentForm
 from comments.tools import split_on_pages, get_captcha_key
 
 import pdb
 
-
-def main_redirect_sort(request):
-    return redirect("/-created_on")
 
 
 @never_cache
@@ -30,7 +28,8 @@ def block_comments(request, sorter):
             new_comm.parrent_id = form["parent"].value()
             new_comm.save()
             page = request.GET.get("page", 1)
-            return redirect(f'/{sorter}/?page={page}')
+            url = reverse("comments:sorted_page", kwargs={"sorter":"-created_on"})
+            return redirect(f'{url}?page={page}')
 
     all_comments = Comment.objects.all()
 
@@ -64,3 +63,10 @@ def block_comments(request, sorter):
             "count_all": all_count
         }
     )
+
+
+# method delete
+def delete_comment(request, id, sorter='-created_on'):
+    del_obj = get_object_or_404(Comment, pk=id)
+    del_obj.delete()
+    return redirect(reverse("comments:sorted_page", kwargs={"sorter":sorter}))

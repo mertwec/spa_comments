@@ -10,15 +10,15 @@
 <div class="contaier-fluid col">
     <div class="contaier-fluid row-4">
         <h2 class="text-center m-3">
-            <a href="{% url 'sorted_page' sorter='-created_on' %}">{{title}}</a>
+            <a href="{% url 'comments:sorted_page' sorter='-created_on' %}">{{title}}</a>
         </h2>
     
 
     <p class="text-center">Sort by:
-        <a href="{% url 'sorted_page' sorter='username' %}">name</a> /
-        <a href="{% url 'sorted_page' sorter='email' %}">email</a> /
-        <a href="{% url 'sorted_page' sorter='created_on' %}">oldest</a> /
-        <a href="{% url 'sorted_page' sorter='-created_on' %}">newest</a>
+        <a href="{% url 'comments:sorted_page' sorter='username' %}">name</a> /
+        <a href="{% url 'comments:sorted_page' sorter='email' %}">email</a> /
+        <a href="{% url 'comments:sorted_page' sorter='created_on' %}">oldest</a> /
+        <a href="{% url 'comments:sorted_page' sorter='-created_on' %}">newest</a>
     </p>
     <p class="text-end mx-5">
         Max main messages on page: {{count_main}} <br>

@@ -1,8 +1,9 @@
 from django.urls import path
 from comments import views
 
-app_name = "comments"
+app_name = "comments"   # пространство имен
 
-# urlpatterns = [
-#     path('/', views.block_comments, name="comments"),
-# ]
+urlpatterns = [
+    path('<str:sorter>/', views.block_comments, name="sorted_page"),
+    path('delete/<int:id>/', views.delete_comment, name='delete_comment')
+]
