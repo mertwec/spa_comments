@@ -1,17 +1,19 @@
-<div class="collapse navbar-collapse">
 
-    <ul class="navbar-nav mr-auto">
+<div class="container-fluid row m-2">
+    <h3 class="ms-3 mb-0 col">Messanger</h3>
+    <div class="col d-flex justify-content-end">
         {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'users:logout' %}">выйти</a>
-        </li>
+        <a href="{% url 'users:logout' %}">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </a>
         {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'users:login' %}">войти</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'users:register' %}">зарегистрироваться</a>
-        </li>
+
+        <a class="m-2" href="{% url 'users:login' %}">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </a>
+            <a class="m-2" href="{% url 'users:register' %}">
+                <button type="submit" class="btn btn-primary">SignUp</button>
+        </a>
         {% endif %}
-    </ul>
+    </div>
 </div>

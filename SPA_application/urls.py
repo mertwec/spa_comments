@@ -19,17 +19,21 @@ from django.urls import path, include
 from django.contrib.staticfiles.views import serve
 from django.views.decorators.cache import never_cache
 from SPA_application import settings, views
-from comments import urls
+import pprint as pp
 
+import django.contrib.auth.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main_redirect_sort),
+
+    path('users/', include('users.urls')),
+    # path('users/', include('django.contrib.auth.urls')), # default urls for CRUD user
+
+    path('', views.main_redirect_sort, name="home"),
     path('captcha/', include('captcha.urls')),
-    path("comments/", include('comments.urls'))
+    path('comments/', include('comments.urls')),
 ]
 
 if settings.DEBUG:
-    urlpatterns.append(
-        path('static/<path:path>', never_cache(serve))
-    )
+    urlpatterns.append(path('static/<path:path>', never_cache(serve)))
+

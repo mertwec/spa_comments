@@ -1,8 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
-cache_files
-static_connect
+cache_files/
+static_connect/
+.env.dev
+*.dev
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
