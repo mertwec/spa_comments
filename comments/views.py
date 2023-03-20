@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.cache import never_cache
 from django.urls import reverse
 from comments.models import MockPost, Comment
-from comments.forms import NewCommentForm
+from comments import forms as com_form
 from comments.tools import split_on_pages, get_captcha_key
 
 import pdb
-
 
 
 @never_cache
@@ -18,17 +17,27 @@ def block_comments(request, sorter):
     if not post:
         post = MockPost.objects.create(title='Discussion')
 
-    form = NewCommentForm()
+    if request.user.is_authenticated:
+        form = com_form.AuthCommentForm()
+    else:
+        form = com_form.AnonimCommentForm()
 
     if request.method == "POST":
-        form = NewCommentForm(request.POST)
+        if request.user.is_authenticated:
+            form = com_form.AuthCommentForm(request.POST)
+        else:
+            form = com_form.AnonimCommentForm(request.POST)
         if form.is_valid():
             new_comm = form.save(commit=False)
-            new_comm.post_id = post.pk
+            if isinstance(form, com_form.AuthCommentForm):
+                new_comm.username = request.user.username
+                new_comm.email = request.user.email
+
             new_comm.parrent_id = form["parent"].value()
+            new_comm.post_id = post.pk
             new_comm.save()
             page = request.GET.get("page", 1)
-            url = reverse("comments:sorted_page", kwargs={"sorter":"-created_on"})
+            url = reverse("comments:sorted_page", kwargs={"sorter": "-created_on"})
             return redirect(f'{url}?page={page}')
 
     all_comments = Comment.objects.all()
@@ -43,7 +52,7 @@ def block_comments(request, sorter):
         queryset=zero_comments,
         items_on_page=items_on_page)
 
-    # add subcomments to zero comeents on page
+    # add subcomments to zero comments on page
     page_tree_comments = [all_comments.filter(
         tree_id=i.tree_id) for i in page.object_list]
 

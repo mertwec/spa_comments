@@ -70,3 +70,7 @@ class RegisterView(FormView):
 #         u.save()
 #         login(self.request, u)
 #         return super().form_valid(form)
+
+
+def profile(requests, user_id: int):
+    pass

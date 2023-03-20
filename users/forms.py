@@ -39,3 +39,5 @@ class ConfForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('secret_key',)
+
+
