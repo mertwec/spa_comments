@@ -69,7 +69,7 @@ def block_comments(request, sorter):
         }
     )
 
-
+@never_cache
 def reply_form_comment(request, comment_id=None):
     form = com_form.AnonimCommentForm()
     if request.user.is_authenticated:
