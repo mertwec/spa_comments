@@ -23,7 +23,7 @@
                 </button>
 
                 {% if user.is_staff %}
-                <a href='{% url "comments:delete_comment" id=node.id %}'>
+                <a href='{% url "comments:delete_comment" id=node.id  %}'>
                     <button class="btn btn-primary m-2">Delete</button>
                 </a>
                 {% endif %}

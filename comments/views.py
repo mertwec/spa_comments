@@ -33,7 +33,6 @@ def block_comments(request, sorter):
                 new_comm.username = request.user.username
                 new_comm.email = request.user.email
 
-            # new_comm.parrent_id = form["parent"].value()
             new_comm.post_id = post.pk
             new_comm.save()
             page = request.GET.get("page", 1)
@@ -57,8 +56,6 @@ def block_comments(request, sorter):
         tree_id=i.tree_id) for i in page.object_list]
 
     all_count = sum(map(len, page_tree_comments))
-    captcha_key = get_captcha_key()
-
     return render(
         request,
         template_name="comments/content.html",
@@ -67,7 +64,6 @@ def block_comments(request, sorter):
             "comments": page_tree_comments,
             "page": page,
             "comment_form": form,
-            "ckey": captcha_key,
             "count_main": items_on_page,
             "count_all": all_count
         }

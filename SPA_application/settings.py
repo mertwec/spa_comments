@@ -19,7 +19,9 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.join(BASE_DIR, 'SPA_application')
 
-load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
+# load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '1').lower() in ['true', 't', '1']
@@ -32,6 +34,11 @@ SECRET_KEY = os.getenv("SECRET_KEY",
                        'django-insecure-(m$ato*a50$))q@2=l1eqfetksq92yec(j24!41b39nedc!&$)')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', "*").split(' ')
+
+ADMIN_USER = {
+    "login": os.getenv('ADMIN_LOGIN'),
+    "password": os.getenv('ADMIN_PASSWORD')
+}
 
 # Application definition
 
@@ -51,14 +58,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',       # connect whitenoise for static
-    # 'django.middleware.cache.UpdateCacheMiddleware',    # for server cache
+    'django.middleware.cache.UpdateCacheMiddleware',    # for server cache
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django.middleware.cache.FetchFromCacheMiddleware',   # for server cache
+    'django.middleware.cache.FetchFromCacheMiddleware',   # for server cache
 ]
 
 ROOT_URLCONF = 'SPA_application.urls'
