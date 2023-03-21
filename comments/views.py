@@ -33,11 +33,11 @@ def block_comments(request, sorter):
                 new_comm.username = request.user.username
                 new_comm.email = request.user.email
 
-            new_comm.parrent_id = form["parent"].value()
+            # new_comm.parrent_id = form["parent"].value()
             new_comm.post_id = post.pk
             new_comm.save()
             page = request.GET.get("page", 1)
-            url = reverse("comments:sorted_page", kwargs={"sorter": "-created_on"})
+            url = reverse("comments:sorted_page", kwargs={"sorter": sorter})
             return redirect(f'{url}?page={page}')
 
     all_comments = Comment.objects.all()
@@ -74,8 +74,18 @@ def block_comments(request, sorter):
     )
 
 
+def reply_form_comment(request, comment_id=None):
+    form = com_form.AnonimCommentForm()
+    if request.user.is_authenticated:
+        form = com_form.AuthCommentForm()
+    form.initial["parent"] = comment_id
+
+    # form.initial["text"] = f"answer for {comment_id}"
+    return render(request, "comments/nodes/form_new_comment.html", {"comment_form": form})
+
+
 # method delete
 def delete_comment(request, id, sorter='-created_on'):
     del_obj = get_object_or_404(Comment, pk=id)
     del_obj.delete()
-    return redirect(reverse("comments:sorted_page", kwargs={"sorter":sorter}))
+    return redirect(reverse("comments:sorted_page", kwargs={"sorter": sorter}))

@@ -1,0 +1,16 @@
+<!-- nav paginator  -->
+<div class="text-center">
+    {% if page.has_other_pages %}
+    {% if page.has_previous %}
+    <a href="?page={{page.previous_page_number}}"> &lt; </a>
+    &nbsp; | &nbsp;
+    {% endif %}
+
+    <span>Part {{ page.number }} from {{ page.paginator.num_pages }}</span>
+
+    {% if page.has_next %}
+    &nbsp; | &nbsp;
+    <a href="?page={{page.next_page_number }}"> &gt; </a>
+    {% endif %}
+    {% endif %}
+</div>

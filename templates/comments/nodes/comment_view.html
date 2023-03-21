@@ -14,16 +14,22 @@
                 <div class="mx-3">
                     {{ node.text }}
                 </div>
+                {% if node.url%}
+                    <p class="mx-3">{{node.url}}</p>
+                {%endif%}
                 <hr class="my-1">
-                <button class="btn btn-primary m-2" onclick="createReplyForm({{ node.id }})">
+                <button class="btn btn-primary m-2" onclick="setReplyForm({{ node.id }})">
                     Reply <span class="fw-bold">{{ node.username }}</span>
                 </button>
 
+                {% if user.is_staff %}
                 <a href='{% url "comments:delete_comment" id=node.id %}'>
                     <button class="btn btn-primary m-2">Delete</button>
                 </a>
+                {% endif %}
 
             </div>
+
 
             {% if not node.is_leaf_node %}
             <ul class="children">
