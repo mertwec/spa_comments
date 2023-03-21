@@ -17,6 +17,15 @@
 
 Easy application for create message and answer on them.
 
+Comment can send as registered user and not registered,
+for send as not registered user need enter username, email and captcha.
+
+Delete comment can only admin-user:
+```commandline
+login = pro
+password = pro123456789
+```
+
 Pagination: split on 10 message higher level for page (answer to message not taken into account).
 
 Display can be sorted by name, email and date(asc, desc).

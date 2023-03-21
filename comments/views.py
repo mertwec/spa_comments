@@ -65,7 +65,8 @@ def block_comments(request, sorter):
             "page": page,
             "comment_form": form,
             "count_main": items_on_page,
-            "count_all": all_count
+            "count_all": all_count,
+            "zero_count": len(page_tree_comments)
         }
     )
 
