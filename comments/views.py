@@ -56,6 +56,7 @@ def block_comments(request, sorter):
         tree_id=i.tree_id) for i in page.object_list]
 
     all_count = sum(map(len, page_tree_comments))
+    # pdb.set_trace()
     return render(
         request,
         template_name="comments/content.html",
@@ -69,6 +70,7 @@ def block_comments(request, sorter):
             "zero_count": len(page_tree_comments)
         }
     )
+
 
 @never_cache
 def reply_form_comment(request, comment_id=None):

@@ -12,7 +12,7 @@
                 <p class="my-0 mx-2">{{ node.email }}</p>
                 <hr class="my-1">
                 <div class="mx-3">
-                    {{ node.text }}
+                    {{ node.text|safe }}
                 </div>
                 {% if node.url%}
                     <p class="mx-3">{{node.url}}</p>

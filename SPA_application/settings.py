@@ -19,6 +19,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.join(BASE_DIR, 'SPA_application')
 
+
 # load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
@@ -146,7 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_URL = 'media/'
 STORAGES = {
     # for django >= 4.2
     "staticfiles": {
@@ -160,6 +161,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static_connect", "static")
+MEDIA_ROOT = os.path.join(BASE_DIR, "static_connect", "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
