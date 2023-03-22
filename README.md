@@ -4,7 +4,7 @@
 ## Contents
 1. [Dependencies](#dependencies-)
 2. [Description](#description-)
-3. [Instruction](#instruction-for-deploy-)
+3. [Instruction](#instruction-)
 
 ---
 ## Dependencies:
@@ -34,7 +34,11 @@ Display can be sorted by name, email and date(asc, desc).
 
 ---
 
-### Instruction for deploy:
+TODO: need validation for close tags
+
+---
+
+### Instruction:
 
 1. Download this project: https://github.com/mertwec/spa_comments.git
 2. Open directory 'spa_comments': `cd spa_comments/`
