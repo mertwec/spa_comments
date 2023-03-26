@@ -20,8 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.join(BASE_DIR, 'SPA_application')
 
 
-# load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
+# load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!

@@ -1,5 +1,6 @@
 # SPA-application: Comments
 
+https://spa-comments.onrender.com
 
 ## Contents
 1. [Dependencies](#dependencies-)
@@ -15,26 +16,27 @@
 ---
 ## Description:
 
-Easy application for create message and answer on them.
-In field 'text' you can use tags: br, i, strong, code, a. 
-Comment can send as registered user and not registered,
-for send as not registered user need enter username, email and captcha.
+There are a few minor errors in the description. Here's a corrected version:
+Description:
 
-Delete comment can only admin-user:
+This is an easy-to-use application for creating messages and replying to them. In the 'text' field, you can use tags such as br, i, strong, code, and a. The application checks that tags are closed properly.
+
+Comments can be submitted by both registered and unregistered users. Unregistered users need to enter their username, email address, and captcha to submit a comment.
+
+*Only admin users can delete comments. The admin user login details are:
+
+
 ```commandline
 login: pro
 password: pro123456789
 ```
 
-Pagination: split on 10 message higher level for page (answer to message not taken into account).
+Pagination is set up so that messages are split into groups of 10 per page (excluding replies to messages).
 
-Display can be sorted by name, email and date(asc, desc).
+You can sort the display by name, email, and date (ascending or descending order).
 
 "DB-diagram.png": database structure.
 
----
-
-TODO: need validation for close tags
 
 ---
 

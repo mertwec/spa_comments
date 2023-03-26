@@ -2,12 +2,12 @@ from comments.models import Comment  # , User
 from django import forms
 from mptt.forms import TreeNodeChoiceField
 from captcha.fields import CaptchaField
-from comments.form_validator import validator_allowed_tags
+from comments.form_validator import validator_allowed_tags, validator_closed_tags
 
 
 class CommentForm(forms.ModelForm):
     parent = TreeNodeChoiceField(queryset=Comment.objects.all())
-    text = forms.CharField(validators=[validator_allowed_tags],
+    text = forms.CharField(validators=[validator_allowed_tags, validator_closed_tags],
                            widget=forms.Textarea(attrs={"cols": 36, "rows": 7, "class": "m-2"}))
     url = forms.URLField(required=False, widget=forms.URLInput(attrs={"size": 36, "class": "m-2"}))
 
