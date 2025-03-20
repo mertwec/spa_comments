@@ -3,9 +3,12 @@
 https://spa-comments.onrender.com
 
 ## Contents
-1. [Dependencies](#dependencies-)
-2. [Description](#description-)
-3. [Instruction](#instruction-)
+- [SPA-application: Comments](#spa-application-comments)
+  - [Contents](#contents)
+  - [Dependencies:](#dependencies)
+  - [Description:](#description)
+    - [Instruction:](#instruction)
+      - [values in environment:](#values-in-environment)
 
 ---
 ## Dependencies:
@@ -15,9 +18,6 @@ https://spa-comments.onrender.com
 
 ---
 ## Description:
-
-There are a few minor errors in the description. Here's a corrected version:
-Description:
 
 This is an easy-to-use application for creating messages and replying to them. In the 'text' field, you can use tags such as br, i, strong, code, and a. The application checks that tags are closed properly.
 

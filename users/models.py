@@ -4,6 +4,7 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     pass
+
     # add additional fields in here
     class Meta:
         db_table = "users"

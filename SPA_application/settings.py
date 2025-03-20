@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-PROJECT_DIR = os.path.join(BASE_DIR, 'SPA_application')
+PROJECT_DIR = os.path.join(BASE_DIR, "SPA_application")
 
 
 load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
@@ -25,69 +25,70 @@ load_dotenv(os.path.join(BASE_DIR, ".env.dev"))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', '1').lower() in ['true', 't', '1']
+DEBUG = os.getenv("DEBUG", "1").lower() in ["true", "t", "1"]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY",
-                       'django-insecure-(m$ato*a50$))q@2=l1eqfetksq92yec(j24!41b39nedc!&$)')
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-(m$ato*a50$))q@2=l1eqfetksq92yec(j24!41b39nedc!&$)"
+)
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', "*").split(' ')
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(" ")
 
 ADMIN_USER = {
-    "login": os.getenv('ADMIN_LOGIN'),
-    "password": os.getenv('ADMIN_PASSWORD')
+    "login": os.getenv("ADMIN_LOGIN"),
+    "password": os.getenv("ADMIN_PASSWORD"),
 }
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
-    'comments.apps.CommentsConfig',
-    'mptt',
-    'captcha',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "users.apps.UsersConfig",
+    "comments.apps.CommentsConfig",
+    "mptt",
+    "captcha",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',       # connect whitenoise for static
-    'django.middleware.cache.UpdateCacheMiddleware',    # for server cache
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',   # for server cache
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # connect whitenoise for static
+    "django.middleware.cache.UpdateCacheMiddleware",  # for server cache
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",  # for server cache
 ]
 
-ROOT_URLCONF = 'SPA_application.urls'
+ROOT_URLCONF = "SPA_application.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'SPA_application.wsgi.application'
+WSGI_APPLICATION = "SPA_application.wsgi.application"
 
 
 # Database
@@ -101,18 +102,18 @@ DATABASES = {
         "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": os.getenv("DB_HOST", "localhost"),
         "PORT": os.getenv("DB_PORT", 5432),
-        "CONN_MAX_AGE": 600
+        "CONN_MAX_AGE": 600,
     }
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-LOGIN_URL = '/users/login/'
+LOGIN_URL = "/users/login/"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = "users.CustomUser"
 # AUTHENTICATION_BACKENDS = ('user.backends.AuthModelBackend',)
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -123,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
     #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     # },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     # {
     #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
@@ -134,9 +135,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -146,8 +147,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+STATIC_URL = "static/"
+MEDIA_URL = "media/"
 STORAGES = {
     # for django >= 4.2
     "staticfiles": {
@@ -166,12 +167,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static_connect", "media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CACHES = {
-    'default': {
-        'BACKEND': "django.core.cache.backends.filebased.FileBasedCache",
-        'LOCATION': BASE_DIR / 'cache_files',
-        'TIMEOUT': 300,
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / "cache_files",
+        "TIMEOUT": 300,
     }
 }

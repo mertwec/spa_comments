@@ -14,26 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import path, include
-from django.contrib.staticfiles.views import serve
-from django.views.decorators.cache import never_cache
-from SPA_application import settings, views
 import pprint as pp
 
 import django.contrib.auth.urls
+from django.contrib import admin
+from django.contrib.staticfiles.views import serve
+from django.urls import include, path
+from django.views.decorators.cache import never_cache
+
+from SPA_application import settings, views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
-    path('users/', include('users.urls')),
+    path("admin/", admin.site.urls),
+    path("users/", include("users.urls")),
     # path('users/', include('django.contrib.auth.urls')), # default urls for CRUD user
-
-    path('', views.main_redirect_sort, name="home"),
-    path('captcha/', include('captcha.urls')),
-    path('comments/', include('comments.urls')),
+    path("", views.main_redirect_sort, name="home"),
+    path("captcha/", include("captcha.urls")),
+    path("comments/", include("comments.urls")),
 ]
 
 if settings.DEBUG:
-    urlpatterns.append(path('static/<path:path>', never_cache(serve)))
-
+    urlpatterns.append(path("static/<path:path>", never_cache(serve)))

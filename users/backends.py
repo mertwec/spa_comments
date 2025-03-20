@@ -1,6 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
-from django.contrib.auth import get_user_model
 
 from users.models import CustomUser
 
@@ -14,12 +14,12 @@ class AuthModelBackend(ModelBackend):
             username = kwargs.get(UserModel.USERNAME_FIELD)
         if username is None or password is None:
             return
-        if '@' in username:
-            kwargs = {'email': username}
+        if "@" in username:
+            kwargs = {"email": username}
         else:
-            kwargs = {'phone': username}
+            kwargs = {"phone": username}
         try:
-            #user = CustomUser.objects.get(**kwargs)
+            # user = CustomUser.objects.get(**kwargs)
             user = UserModel.objects.get(Q(email=username) | Q(phone=username))
         except UserModel.DoesNotExist:
             UserModel().set_password(password)

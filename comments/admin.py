@@ -1,7 +1,7 @@
 from django.contrib import admin
-from comments import models
 from mptt.admin import MPTTModelAdmin
 
+from comments import models
 
 admin.site.register(models.MockPost)
 # admin.site.register(models.User)
